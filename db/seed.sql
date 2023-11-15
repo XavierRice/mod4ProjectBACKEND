@@ -6,11 +6,11 @@ VALUES
 ('user1', 'Professor X', 'user1@anEmail.com','passwordOne1', true, 'https://tinyurl.com/3ed239xn' ),
 ('user2', 'Mister Rogers', 'user2@anotherEmail.com', 'passwordTwo2', false, 'https://tinyurl.com/p7cfp5zy' );
 
-INSERT INTO subjects (subject_name)
+INSERT INTO subjects (subject_name, membership)
 VALUES
-('React'),
-('Higher Order Functions'),
-('Figma');
+('React', true),
+('Higher Order Functions', false),
+('Figma', true);
 
 INSERT INTO notes (user_id, subject_name, title, videos, content, subject_id)
 VALUES

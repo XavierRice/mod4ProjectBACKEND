@@ -17,7 +17,8 @@ DROP TABLE IF EXISTS subjects;
 
 CREATE TABLE subjects (
     id SERIAL PRIMARY KEY,
-    subject_name TEXT UNIQUE
+    subject_name TEXT UNIQUE,
+    membership BOOLEAN NOT NULL
 );
 
 DROP TABLE IF EXISTS notes;
