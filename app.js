@@ -16,7 +16,7 @@ app.use(express.json()); //to parse our incoming data.
 
 //PRIME ROUTES
 app.get('/', (req, res) =>{
-    res.send('Online-Project')
+    res.send('Welcome to StudyBuddy!')
 })
 
 
