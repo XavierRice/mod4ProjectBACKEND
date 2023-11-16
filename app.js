@@ -15,11 +15,17 @@ app.use(express.json()); //to parse our incoming data.
 
 
 //PRIME ROUTES
-app.get('/', (req, res) =>{
+app.get("/", (req, res) =>{
     res.send('Welcome to StudyBuddy!')
 })
+
+const userController = require('./controllers/userControllers');
+app.use("/users", userController)
 
 
 app.get('*', (req, res) =>{
     res.status(420).send("You're lost")
 })
+
+
+module.exports = app;

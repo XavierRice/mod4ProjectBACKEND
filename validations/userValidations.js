@@ -21,7 +21,6 @@ const checkBoolean = (req, res, next) => {
     }
 };
 
-
 const checkEmail = (req, res, next) => {
     const { email } = req.body;
     if ( email && isValidEmail(email)){
@@ -33,10 +32,11 @@ const checkEmail = (req, res, next) => {
 
 const checkUrl = (req, res, next) => {
     const {profilePic, videos } = req.body;
-    if ( req.body.profilePic && req.body.profilePic.startsWith("https://") ||
-    req.body.videos && req.body.videos.startsWith("https://")
+    if ( 
+        profilePic && profilePic.startsWith("https://") ||
+         videos && videos.startsWith("https://")
     ){
-        return next();
+        return next()
     } else {
         res.status(400).json({error:"You must have a link for a photo or video"})
     }
@@ -44,7 +44,7 @@ const checkUrl = (req, res, next) => {
 
 function isValidEmail(email){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Continuing my emploration of regex this the wordle lab. /  /- are the boundaries. any character(notwhite space or @) + "@" and "."
-    return emailRegex.text(email)  // test is a method of regex. you make the case or expression then you run tests on it. returns a boolean.
+    return emailRegex.test(email)  // test is a method of regex. you make the case or expression then you run tests on it. returns a boolean.
 };
 
 const checkPassword = (req, res, next) => {

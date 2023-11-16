@@ -13,23 +13,15 @@ membership BOOLEAN NOT NULL,
 profilePic TEXT DEFAULT NULL
 );
 
-DROP TABLE IF EXISTS subjects;
-
-CREATE TABLE subjects (
-    id SERIAL PRIMARY KEY,
-    subject_name TEXT UNIQUE,
-    membership BOOLEAN NOT NULL
-);
-
 DROP TABLE IF EXISTS notes;
 
 CREATE TABLE notes(
 note_id SERIAL PRIMARY KEY,
 user_id INTEGER REFERENCES users (id),
-subject_name TEXT REFERENCES subjects (subject_name) ,
+subject_name TEXT,
+subject_id INTEGER,
 title TEXT NOT NULL,
 videos TEXT[],
 content TEXT,
-is_favorite BOOLEAN,
-subject_id INTEGER REFERENCES subjects (id)
+is_favorite BOOLEAN
 );
