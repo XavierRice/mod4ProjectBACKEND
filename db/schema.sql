@@ -30,5 +30,6 @@ subject_name TEXT REFERENCES subjects (subject_name) ,
 title TEXT NOT NULL,
 videos TEXT[],
 content TEXT,
+is_favorite BOOLEAN,
 subject_id INTEGER REFERENCES subjects (id)
 );
