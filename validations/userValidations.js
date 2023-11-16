@@ -33,9 +33,7 @@ const checkEmail = (req, res, next) => {
 const checkUrl = (req, res, next) => {
     const {profilePic, videos } = req.body;
     if ( 
-        profilePic && profilePic.startsWith("https://") ||
-         videos && videos.startsWith("https://")
-    ){
+        ( profilePic && profilePic.startsWith("https://")) || ( videos && videos.startsWith("https://"))){
         return next()
     } else {
         res.status(400).json({error:"You must have a link for a photo or video"})

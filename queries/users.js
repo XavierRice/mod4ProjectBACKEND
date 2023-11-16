@@ -52,7 +52,7 @@ const deleteUser = async (id) => {
 const updateUser = async (id, user) => {
   try {
     const updatedUser = await db.one(
-      "UPDATE user SET username=$1, name=$2, email=$3, password=$4, membership=$5, profilePic=$6 RETURNING *",
+      "UPDATE users SET username=$1, name=$2, email=$3, password=$4, membership=$5, profilePic=$6 WHERE id=$7 RETURNING *",
       [
         user.username,
         user.name,

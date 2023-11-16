@@ -60,16 +60,15 @@ users.post(
 
 //UPDATE
 users.put(
-  "/",
+  "/:id",
   checkBoolean,
   checkEmail,
-  checkUrl,
   checkUserName,
   async (req, res) => {
     const { id } = req.params;
     try {
       const updatedUser = await updateUser(id, req.body);
-      res.json(updateUser);
+      res.json(updatedUser);
     } catch (error) {
       res.status(404).json({ error: "cant do it partner" });
     }
@@ -77,7 +76,7 @@ users.put(
 );
 
 //DELETE
-users.delete(':/id', async (req, res) =>{
+users.delete('/:id', async (req, res) =>{
     const { id } = req.params;
     const deletedUser = await deleteUser(id)
     if(deleteUser.id){
