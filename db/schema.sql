@@ -19,7 +19,6 @@ CREATE TABLE notes(
 note_id SERIAL PRIMARY KEY,
 user_id INTEGER REFERENCES users (id),
 subject_name TEXT,
-subject_id INTEGER,
 title TEXT NOT NULL,
 videos TEXT[],
 content TEXT,
