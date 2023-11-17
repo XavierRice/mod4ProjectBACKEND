@@ -9,12 +9,9 @@ const getAllNotes = async (id) => {
   }
 };
 
-const getNote = async (note_id) => {
+const getNote = async (note_id, user_id) => {
   try {
-    const targetNote = await db.one(
-      "SELECT * FROM notes WHERE note_id=$1",
-      note_id
-    );
+    const targetNote = await db.one("SELECT * FROM notes WHERE note_id=$1 AND user_id=$2", [note_id, user_id]);
     return targetNote;
   } catch (error) {
     return error;

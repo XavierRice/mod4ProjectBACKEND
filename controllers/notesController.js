@@ -1,7 +1,6 @@
 //DEPENDENCIES
 const express = require('express');
 const notes = express.Router({mergeParams:true});
-const { getUser } = require('../queries/users');
 
 //QUERIES
 const {
@@ -13,37 +12,53 @@ const {
     DeleteNote
 } = require('../queries/notes')
 
+const { getUser } = require('../queries/users');
 
 //ROUTES
 
 //INDEX
 notes.get("/", async (req, res) => {
-    const { id } = req.params;
-    const allNotes = await getAllNotes(id);
-    const user = await getUser(id)
+    const { user_id } = req.params;
 
-    if(allNotes[0]){
-        res.status(200).json({...user, allNotes})
-    } else {
-        res.status(500).json({error: "somethings wrong on your end"})
+ try{
+     const allNotes = await getAllNotes(user_id);
+     const user = await getUser(user_id)
+     if(user && allNotes.length >0){
+         res.status(200).json({...user, allNotes})
+        }else {
+        res.status(500).json({error: "user or notes not found"})
     }
-});
+}catch(error){
+    console.error("Error Fetching notes:", error)
+    res.status(500).json({error:"internal server error"})
+}});
 
 //SHOW
-notes.get("/:id", async (req, res) => {
-    const { note_id, id } = req.params;
-    const note = await getNote(note_id);
-    const user = await getUser(id);
-    if(note){
-        res.status(200).json({...user, note})
-    } else {
-        res.status(404).json({error: "not found here"})
+notes.get("/:note_id", async (req, res) => {
+    const { user_id, note_id } = req.params;
+    const user = await getUser(user_id);
+    const note = await getNote(note_id, user_id);
+    if(!note.note_id){
+        res.status(404).json({error:"Note not found"})
+    }else{
+        if(user.id){
+            res.status(200).json({...user, note})
+           
+        } else {
+            res.status(404).json({error: "not found here"})
+        }
     }
+    // if(user.id){
+    //     res.status(200).json({...user, note})
+       
+    // } else {
+    //     res.status(404).json({error: "not found here"})
+    // }
 })
 
 //ADD VIDEOS
-notes.patch("/:id", async (req, res) => {
-    const {note_id } = req.params;
+notes.patch("/:note_id", async (req, res) => {
+    const { note_id } = req.params;
     const { videoLink } = req.body;
     try {
         const addedVideo = await addVideotoNote(note_id, videoLink);
@@ -54,7 +69,7 @@ notes.patch("/:id", async (req, res) => {
     }
 })
 //UPDATE
-notes.put("/:id", async (req, res) =>{
+notes.put("/:note_id", async (req, res) =>{
     const { id, note_id } = req.params;
     const updatedNote = await UpdateNote({note_id, id, ...req.body})
     if (updatedNote.id){
@@ -72,7 +87,7 @@ notes.post("/", async (req, res) => {
 })
 
 // DELETE
-notes.delete("/:id", async (req, res) => {
+notes.delete("/:note_id", async (req, res) => {
     const { note_id } = req.params;
     const deletedNote = await DeleteNote(note_id);
     if (deletedNote.id) {
@@ -82,3 +97,4 @@ notes.delete("/:id", async (req, res) => {
     }
   });
   
+  module.exports = notes;

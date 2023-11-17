@@ -20,7 +20,7 @@ app.get("/", (req, res) =>{
 })
 
 const userController = require('./controllers/userControllers');
-app.use("/users", userController)
+app.use("/user", userController)
 
 
 app.get('*', (req, res) =>{

@@ -1,6 +1,8 @@
 //DEPENDENCIES
 const express = require("express");
 const users = express.Router();
+const notesController = require('./notesController')
+users.use('/:user_id/notes/', notesController)
 
 //QUERIES
 const {
@@ -19,7 +21,7 @@ const {
   checkUserName,
   checkEmail,
 } = require("../validations/userValidations");
-const { as } = require("pg-promise");
+
 
 //ROUTES:
 
@@ -47,7 +49,6 @@ users.get("/:id", async (req, res) => {
 //CREATE
 users.post(
   "/",
-
   async (req, res) => {
     try {
       const user = await createUser(req.body);
