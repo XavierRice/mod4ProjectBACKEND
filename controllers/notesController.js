@@ -90,7 +90,7 @@ notes.post("/", async (req, res) => {
 notes.delete("/:note_id", async (req, res) => {
     const { note_id } = req.params;
     const deletedNote = await DeleteNote(note_id);
-    if (deletedNote.id) {
+    if(deletedNote.note_id) {
       res.status(200).json(deletedNote);
     } else {
       res.status(404).json({ error: "No note found" });
