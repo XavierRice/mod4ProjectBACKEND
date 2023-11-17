@@ -39,7 +39,7 @@ notes.get("/:note_id", async (req, res) => {
     const user = await getUser(user_id);
     const note = await getNote(note_id, user_id);
     if(!note.note_id){
-        res.status(404).json({error:"Note not found"})
+        res.status(404).json({error:"Note not found", user_id, note_id})
     }else{
         if(user.id){
             res.status(200).json({...user, note})

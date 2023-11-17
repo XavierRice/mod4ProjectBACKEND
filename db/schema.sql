@@ -22,5 +22,6 @@ subject_name TEXT,
 title TEXT NOT NULL,
 videos TEXT[],
 content TEXT,
+github TEXT,
 is_favorite BOOLEAN
 );
