@@ -3,12 +3,15 @@
 
 INSERT INTO users ( username, name, email, password, membership, profilePic)
 VALUES
-('user1', 'Professor X', 'user1@anEmail.com','passwordOne1', true, 'https://tinyurl.com/3ed239xn' ),
+('user1', 'Professor X', 'user1@anEmail.com','passwordOne1', true, 'assets/ProfessorX.jpeg' ),
 ('user2', 'Mister Rogers', 'user2@anotherEmail.com', 'passwordTwo2', false, 'https://tinyurl.com/p7cfp5zy' );
 
-INSERT INTO notes (user_id, subject_name, title, videos, content, github, is_favorite)
+INSERT INTO notes (user_id, subject_name, title, videos, content, is_favorite)
 VALUES
-(1, 'React',  'React Basics: components, state and props', ARRAY['https://www.youtube.com/watch?v=omphzcP6wf4'], 'https://docs.google.com/document/d/1X3kA9GPCDfHL-eQwTml7Ju9RyMreVAKy-KeD6qdpitw/edit', 'https://github.com/10-1-pursuit/unit-react#readme', true),
-(2, 'Higher Order Functions',  'Functions: Cantrips and Useful Spells', ARRAY['https://www.youtube.com/results?search_query=react+prerequisites+js+higher+order+functions+javascript'], 'https://docs.google.com/document/d/1dsv2S1YGDP9plqR7UiOUkNuvp3y7lFsdtf4LWWIjLgs/edit', 'https://github.com/10-1-pursuit/unit-react#readme', false),
-(1, 'Figma', 'Figma Introduction: Beginner Collection', ARRAY['https://www.youtube.com/watch?v=Cx2dkpBxst8&list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4'], 'https://docs.google.com/document/d/1X3kA9GPCDfHL-eQwTml7Ju9RyMreVAKy-KeD6qdpitw/edit', 'https://github.com/10-1-pursuit/unit-react#readme', true),
-(1, 'React',  'React Hooks: There is more that use state?', ARRAY['https://www.youtube.com/watch?v=TNhaISOUy6Q'], 'https://docs.google.com/document/d/14MzdlZjcUq_1owCSotPfPgl2TVMALF1Anp6qMpV_wLk/edit', 'https://github.com/10-1-pursuit/unit-react#readme', false);
+ (1, 'JavaScript', 'Introduction to JavaScript Basics', 'https://www.youtube.com/watch?v=N8ap4k_1QEQ', 'This video covers fundamental concepts in JavaScript such as variables, data types, and basic syntax.', true),
+  (2, 'JavaScript', 'Intermediate JavaScript Concepts', 'https://www.youtube.com/watch?v=BwyFLRVYbvU', 'This video explores intermediate JavaScript concepts like functions, closures, and higher-order functions.', false),
+  (1, 'HTML', 'HTML5 Fundamentals', 'https://www.youtube.com/watch?v=salY_Sm6mv4', 'An introduction to HTML5 covering its new features and improvements over previous versions of HTML.', true),
+  (1, 'CSS', 'CSS Layout Techniques', 'https://www.youtube.com/watch?v=1PnVor36_40', 'Learn various CSS layout techniques including Flexbox and Grid for building responsive web layouts.', false),
+  (2, 'Python', 'Python Basics for Beginners', 'https://www.youtube.com/watch?v=kqtD5dpn9C8', 'Introduction to Python programming covering basic syntax, variables, and control structures.', true),
+  (1, 'React', 'Getting Started with React', 'https://www.youtube.com/watch?v=O6P86uwfdR0&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h', 'A beginner-friendly guide to getting started with React, a popular JavaScript library for building user interfaces.', false),
+  (2, 'Node.js', 'Node.js Essentials', 'https://www.youtube.com/watch?v=6g0qAx_4CXM&list=PLpc_YvcwbxaRl8WOTamrAD78jnsuNqM1C', 'Explore the fundamentals of Node.js, an event-driven JavaScript runtime, for building scalable network applications.', true);

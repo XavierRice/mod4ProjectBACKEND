@@ -20,8 +20,7 @@ note_id SERIAL PRIMARY KEY,
 user_id INTEGER REFERENCES users (id),
 subject_name TEXT,
 title TEXT NOT NULL,
-videos TEXT[],
+videos TEXT,
 content TEXT,
-github TEXT,
 is_favorite BOOLEAN
 );
