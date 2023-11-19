@@ -3,8 +3,8 @@
 
 INSERT INTO users ( username, name, email, password, membership, profilePic)
 VALUES
-('user1', 'Professor X', 'user1@anEmail.com','passwordOne1', true, 'assets/ProfessorX.jpeg' ),
-('user2', 'Mister Rogers', 'user2@anotherEmail.com', 'passwordTwo2', false, 'https://tinyurl.com/p7cfp5zy' );
+('user1', 'Professor X', 'user1@anEmail.com','passwordOne1', true, 'Professor' ),
+('user2', 'Mister Rogers', 'user2@anotherEmail.com', 'passwordTwo2', false, 'User2' );
 
 INSERT INTO notes (user_id, subject_name, title, videos, content, is_favorite)
 VALUES
