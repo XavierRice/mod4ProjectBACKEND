@@ -28,7 +28,7 @@ const {
 //Index:
 users.get("/", async (req, res) => {
   const allUsers = await getAllUsers();
-  console.log(allUsers)
+ 
   if (allUsers[0]) {
     res.status(200).json(allUsers);
   } else {
