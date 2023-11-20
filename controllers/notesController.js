@@ -23,7 +23,7 @@ notes.get("/", async (req, res) => {
  try{
      const allNotes = await getAllNotes(user_id);
      const user = await getUser(user_id)
-     if(user && allNotes.length >0){
+     if(user.id){
          res.status(200).json({...user, allNotes})
         }else {
         res.status(500).json({error: "user or notes not found"})
@@ -71,8 +71,9 @@ notes.patch("/:note_id", async (req, res) => {
 //UPDATE
 notes.put("/:note_id", async (req, res) =>{
     const { id, note_id } = req.params;
+  
     const updatedNote = await UpdateNote({note_id, id, ...req.body})
-    if (updatedNote.id){
+    if (updatedNote.note_id){
         res.status(200).json(updatedNote)
     } else {
         res.status(404).json("Error Sending")
@@ -81,8 +82,10 @@ notes.put("/:note_id", async (req, res) =>{
 
 //CREATE
 notes.post("/", async (req, res) => {
-    const { user_id } = req.params;
-    const newNote = await CreateNote({user_id, ...req.body})
+    const { id } = req.params;
+    console.log(id)
+    const newNote = await CreateNote({id, ...req.body})
+    console.log(newNote)
     res.status(200).json(newNote)
 })
 

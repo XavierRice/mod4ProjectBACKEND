@@ -21,7 +21,7 @@ const getNote = async (note_id, user_id) => {
 const CreateNote = async (note) => {
   try {
     const newNote = await db.one(
-      "INSERT INTO notes ( user_id, subject_name, title, videos, content, is_favorite) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+      "INSERT INTO notes (user_id, subject_name, title, videos, content, is_favorite) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
       [
         note.user_id,
         note.subject_name,
@@ -56,10 +56,11 @@ const addVideotoNote = async (note_id, videoLink) => {
 };
 
 const UpdateNote = async (note) => {
+
   try {
     const updatedNote = await db.one(
-      "UPDATE notes SET subject_name=$1, title=$2, content=$3, is_favorite=$4 WHERE id=$5 RETURNING *",
-      [(note.subject_name, note.title, note.content, note.is_favorite, note.id)]);
+      "UPDATE notes SET subject_name=$1, title=$2, content=$3, is_favorite=$4 WHERE note_id=$5 RETURNING *",
+      [note.subject_name, note.title, note.content, note.is_favorite, note.note_id]);
     return updatedNote;
   } catch (error) {
     console.error("Somethings wrong with update:", error);
